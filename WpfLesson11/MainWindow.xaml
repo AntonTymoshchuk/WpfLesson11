@@ -1,0 +1,86 @@
+﻿<Window x:Class="WpfLesson11.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfLesson11"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="MainWindow" Width="800" Height="600">
+    <Window.Resources>
+        <system:String x:Key="MyName">Anton</system:String>
+        <system:String x:Key="MySurname">Tymoshchuk</system:String>
+        <system:DateTime x:Key="Dt"/>
+    </Window.Resources>
+    <!--<StackPanel>
+        <TextBlock Text="{StaticResource MyName}"/>
+        <TextBlock Text="{StaticResource MySurname}"/>
+        <DatePicker SelectedDate="{Binding Source={StaticResource Dt},Path=Today,Mode=OneWay}" IsTodayHighlighted="True">
+            <DatePicker.BlackoutDates>
+                <CalendarDateRange Start="3/19/2019" End="3/30/2019"/>
+            </DatePicker.BlackoutDates>
+        </DatePicker>
+    </StackPanel>-->
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="searchTextBox" Grid.Column="0" FontSize="18" VerticalAlignment="Center" TextChanged="searchTextBox_TextChanged"/>
+        <ListView x:Name="fruitsListView" Grid.Row="1">
+            <ListView.Resources>
+                <!--<Style TargetType="GridViewColumnHeader">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>-->
+                <!--<Style TargetType="ListViewItem">
+                <Setter Property="Background" Value="Bisque"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+            </Style>-->
+            </ListView.Resources>
+            <!--<ListView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <UniformGrid/>
+            </ItemsPanelTemplate>
+        </ListView.ItemsPanel>-->
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Icon">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="/Hard Candy.ico" Width="30" Height="30"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Name">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <!--<Image DockPanel.Dock="Left" Source="/Hard Candy.ico" Width="40" Height="40"/>-->
+                                    <TextBox Text="{Binding Name}" Tag="{Binding Id}" FontSize="18" VerticalContentAlignment="Center" BorderThickness="0" MinWidth="100" TextChanged="TextBox_TextChanged"/>
+                                </DockPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Price">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Text="{Binding Price}" FontSize="18" VerticalContentAlignment="Center" BorderThickness="0" MinWidth="100"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
+        </ListView>
+    </Grid>
+</Window>
